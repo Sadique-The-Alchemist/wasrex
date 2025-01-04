@@ -48,44 +48,30 @@ import React, { useState } from "react"
 import ReactDOM from "react-dom/client"
 
 
-// const wasm = import("../build/treat_gl");
+const wasm = import("../build/assets");
 
-// wasm.then((m) => {
-//     const App = () => {
-//         const [expression, setExpression] = useState("");
-//         const handleChange = (e) => {
-//             setExpression(e.target.value);
-//         };
-//         const handleClick = () => {
-//             m.compute(expression);
-//         };
+wasm.then((m) => {
+    const App = () => {
+        const [expression, setExpression] = useState("");
+        const handleChange = (e) => {
+            setExpression(e.target.value);
+        };
+        const handleClick = () => {
+            m.run_computation(expression);
+        };
 
-//         return (
-//             <>
-//                 <div>
-//                     <h1>Hi there</h1>
-//                     <button onClick={m.compute}>Run Computation</button>
-//                 </div>
-//                 <div>
-//                     <input type="text" onChange={handleChange} />
-//                     <button onClick={handleClick}>Say hello!</button>
-//                 </div>
-//             </>
-//         );
-//     };
+        return (
+            <>
 
+                <div>
+                    <h1>Rusted calculater</h1>
+                    <input type="text" onChange={handleChange} />
+                    <button onClick={handleClick}>Evaluate</button>
+                </div>
+            </>
+        );
+    };
 
-const App = () => {
-    return (
-        <>
-            <div>
-                <h1>Hi there</h1>
-
-            </div>
-
-        </>
-    )
-}
-const root = ReactDOM.createRoot(document.getElementById("root"))
-root.render(<App />);
-// });                                                                                                                                                                 
+    const root = ReactDOM.createRoot(document.getElementById("root"))
+    root.render(<App />);
+});                                                                                                                                                                 
