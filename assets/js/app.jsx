@@ -53,11 +53,13 @@ const wasm = import("../build/assets");
 wasm.then((m) => {
     const App = () => {
         const [expression, setExpression] = useState("");
+        const [result, setResult] = useState("")
         const handleChange = (e) => {
             setExpression(e.target.value);
         };
         const handleClick = () => {
-            m.run_computation(expression);
+            const result = m.run_computation(expression);
+            setResult(result)
         };
 
         return (
@@ -67,6 +69,7 @@ wasm.then((m) => {
                     <h1>Rusted calculater</h1>
                     <input type="text" onChange={handleChange} />
                     <button onClick={handleClick}>Evaluate</button>
+                    <h3>{result}</h3>
                 </div>
             </>
         );

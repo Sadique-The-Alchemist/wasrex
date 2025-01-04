@@ -5,10 +5,10 @@ extern "C" {
     fn alert(s: &str);
 }
 #[wasm_bindgen]
-pub fn run_computation(expression: &str) {
+pub fn run_computation(expression: &str) -> String {
     match evaluate(expression) {
-        Ok(result) => alert(&format!("Result: {}", result)),
-        Err(err) => alert(&format!("Error: {}", err)),
+        Ok(result) => String::from(&format!("Result: {}", result)),
+        Err(err) => String::from(&format!("Error: {}", err)),
     }
 }
 
