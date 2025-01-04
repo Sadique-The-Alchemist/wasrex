@@ -69,10 +69,10 @@ defmodule Wasrex.MixProject do
     [
       setup: ["deps.get", "assets.setup", "assets.build"],
       "assets.setup": ["tailwind.install --if-missing", "esbuild.install --if-missing"],
-      "assets.build": ["tailwind wasrex", "esbuild wasrex"],
+      "assets.build": ["tailwind treat_gl", "cmd --cd assets node build.mjs"],
       "assets.deploy": [
-        "tailwind wasrex --minify",
-        "esbuild wasrex --minify",
+        "tailwind treat_gl --minify",
+        "cmd --cd assets node build.mjs --deploy",
         "phx.digest"
       ]
     ]
